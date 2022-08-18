@@ -105,10 +105,5 @@ def mediatype():
     
 sort_resolutions()
 mediatype()
-
-if media_type == "1":
-    base, ext = os.path.splitext(out)
-    file = base + '.mp4'
-    os.rename(out,file)
         
 print(f'{link.title} Downloaded.')
