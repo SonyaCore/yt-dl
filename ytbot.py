@@ -31,6 +31,9 @@ if argv_parsed.video:
 elif argv_parsed.audio:
     getcover(link)
     mediatype(link,'audio')
+else:
+    print('set mediatype --video for video --audio for only audio')
+    exit()
 
 
 print(f'{link.title} Downloaded.')
