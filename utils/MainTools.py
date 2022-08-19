@@ -1,6 +1,7 @@
 import requests
 import tempfile
 import os
+import sys
 import subprocess
 
 
@@ -35,16 +36,14 @@ def getcover(link):
         handler.write(img_data)
 
 
-def mediatype(link,type):
+def mediatype(link,type,destination):
     "media type selection and downloading media"
-    #print("1: Video file with audio")
-    #print("2: Audio only")
 
     global video
     global out
-
-    print("Enter the destination (leave blank for current directory)")
-    destination = str(input(">> ")) or '.'
+    
+    if not destination:
+        destination = f'{sys.path[0]}/'
 
     if type == 'video':
         while True:

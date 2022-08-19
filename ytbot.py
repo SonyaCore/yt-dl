@@ -15,9 +15,11 @@ parser = ArgumentParser()
 parser.add_argument('link')
 parser.add_argument('--video','-v',action='store_true',help='download URL with video')
 parser.add_argument('--audio','-a',action='store_true',help='download URL with only audio')
+parser.add_argument('--dir','-d',action='store',type=str,help='set destination')
 argv_parsed = parser.parse_args()
 
 video_link = argv_parsed.link
+destination = argv_parsed.dir
 
 if not link_is_valid:
     print("Enter valid video link")
@@ -27,10 +29,10 @@ link = YouTube(str(video_link), on_progress_callback=on_progress)
 
 sort_resolutions(link)
 if argv_parsed.video:
-    mediatype(link,'video')
+    mediatype(link,'video',destination)
 elif argv_parsed.audio:
     getcover(link)
-    mediatype(link,'audio')
+    mediatype(link,'audio',destination)
 else:
     print('set mediatype --video for video --audio for only audio')
     exit()
