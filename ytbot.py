@@ -2,6 +2,7 @@
 Ver=0.2
 
 from pytube import YouTube
+from pytube import exceptions
 from pytube.cli import on_progress
 from argparse import ArgumentParser
 
@@ -33,10 +34,23 @@ if not link_is_valid:
     print("Enter valid video link")
     quit()
 
-dl = Download(destination)
-link = YouTube(str(video_link), on_progress_callback=on_progress)
+try:
+    dl = Download(destination)
+    link = YouTube(str(video_link), on_progress_callback=on_progress)
 
-dl.sort_resolutions(link)
+    dl.sort_resolutions(link)
+except exceptions.RegexMatchError:
+    print('Enter valid video link')
+    exit(1)
+except exceptions.AgeRestrictedError:
+    print('Video is age restricted, and cannot be accessed without OAuth.')
+    exit(1)
+except exceptions.LiveStreamError:
+    print('Video is a live stream.')
+    exit(1)
+except exceptions.VideoUnavailable:
+    print('Base video unavailable error.')
+    exit(1)
 
 if argv_parsed.description:
     print(Download.show_description(link))
