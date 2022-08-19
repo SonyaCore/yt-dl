@@ -13,8 +13,8 @@ signal.signal(signal.SIGINT, sigint_handler)
 # parsing argvs and add link argv
 parser = ArgumentParser()
 parser.add_argument('link')
-parser.add_argument('--video','-v',action='store_true')
-parser.add_argument('--audio','-a',action='store_true')
+parser.add_argument('--video','-v',action='store_true',help='download URL with video')
+parser.add_argument('--audio','-a',action='store_true',help='download URL with only audio')
 argv_parsed = parser.parse_args()
 
 video_link = argv_parsed.link
