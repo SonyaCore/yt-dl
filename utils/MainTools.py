@@ -1,7 +1,6 @@
 import requests
 import tempfile
 import os
-import sys
 import subprocess
 
 
@@ -14,7 +13,8 @@ def sort_resolutions(link):
     print(link.title)
 
     # Thumbnail Image and Description
-    print(f"{link.thumbnail_url}\n{link.description}")
+    print(link.thumbnail_url)
+    print(f"\n{link.description}")
 
     video_resolutions = []
     videos = []
@@ -35,20 +35,18 @@ def getcover(link):
         handler.write(img_data)
 
 
-def mediatype(link):
+def mediatype(link,type):
     "media type selection and downloading media"
-    print("1: Video file with audio")
-    print("2: Audio only")
+    #print("1: Video file with audio")
+    #print("2: Audio only")
 
-    global media_type
     global video
     global out
 
-    media_type = input()
     print("Enter the destination (leave blank for current directory)")
     destination = str(input(">> ")) or '.'
 
-    if media_type == "1":
+    if type == 'video':
         while True:
             # Looping through the video_resolutions list to be displayed on the screen for user selection...
             i = 1
@@ -70,13 +68,12 @@ def mediatype(link):
             else:
                 print("Invalid choice!!\n\n")
 
-    elif media_type == "2":
+    elif type == 'audio':
         video = link.streams.filter(only_audio=True).first()
         out = video.download(output_path=destination)
         try:
             base, ext = os.path.splitext(out)
             os.rename(out, base)
-            getcover()
 
             cmd = f"ffmpeg -y -loop 1 -i '{temp.name}' -i '{os.path.realpath(base)}' -c:v libx264 -tune stillimage -c:a aac -b:a 192k -pix_fmt yuv420p -shortest 'out.mp4'"
             subprocess.check_output(cmd, shell=True)
