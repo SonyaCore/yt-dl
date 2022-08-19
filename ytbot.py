@@ -35,7 +35,7 @@ if not link_is_valid:
 dl = Download(destination)
 link = YouTube(str(video_link), on_progress_callback=on_progress)
 
-Download.sort_resolutions(link)
+dl.sort_resolutions(link)
 
 if argv_parsed.description:
     print(Download.show_description(link))

@@ -11,15 +11,31 @@ class Download():
         self.destination = destination
         if not destination:
             destination = f'{sys.path[0]}/'
+
     
+    def sort_resolutions(self,link):
+        "sort stream order"
+
+        # Title of The Video
+        print(link.title)
+
+        # Thumbnail Image and Description
+        print(link.thumbnail_url)
+
+        self.video_resolutions = []
+        self.videos = []
+
+        for stream in link.streams.order_by('resolution'):
+            self.video_resolutions.append(stream)
+            self.videos.append(stream)
+
+        return self.video_resolutions, self.videos
+
     def video(self,link):
-        global videos
-        global out
-    
         while True:
             # Looping through the video_resolutions list to be displayed on the screen for user selection...
             i = 1
-            for resolution in video_resolutions:
+            for resolution in self.video_resolutions:
                 print(f'{i}. {resolution}')
                 i += 1
 
@@ -27,11 +43,11 @@ class Download():
 
             # To validate if the user enters a number displayed on the screen...
             if 1 <= choice < i:
-                resolution_to_download = video_resolutions[choice - 1]
+                resolution_to_download = self.video_resolutions[choice - 1]
                 print(f"downloading {resolution_to_download}")
 
                 # command for downloading the video
-                out = videos[choice - 1].download(output_path=self.destination)
+                self.videos[choice - 1].download(output_path=self.destination)
 
                 break
             else:
@@ -55,27 +71,6 @@ class Download():
             except subprocess.CalledProcessError:
                 print('ffmpeg are not installed')
                 exit(1)
-    
-    def sort_resolutions(link):
-        "sort stream order"
-        global video_resolutions
-        global videos
-
-        # Title of The Video
-        print(link.title)
-
-        # Thumbnail Image and Description
-        print(link.thumbnail_url)
-
-        video_resolutions = []
-        videos = []
-
-        for stream in link.streams.order_by('resolution'):
-            video_resolutions.append(stream)
-            videos.append(stream)
-
-        return video_resolutions, videos
-
 
     def getcover(link):
         "get cover of url link"
