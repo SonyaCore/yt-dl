@@ -5,7 +5,10 @@ from pytube.cli import on_progress
 from argparse import ArgumentParser
 from utils.CheckLink import link_is_valid
 from utils.MainTools import sort_resolutions, mediatype
+from utils.InterruptHandler import sigint_handler
+from utils.InterruptHandler import signal
 
+signal.signal(signal.SIGINT, sigint_handler)
 
 # parsing argvs and add link argv
 parser = ArgumentParser()
