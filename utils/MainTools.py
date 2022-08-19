@@ -5,6 +5,7 @@ import subprocess
 
 
 def sort_resolutions(link):
+    "sort stream order"
     global video_resolutions
     global videos
 
@@ -25,7 +26,7 @@ def sort_resolutions(link):
 
 
 def getcover(link):
-    """get cover of url link"""
+    "get cover of url link"
     global temp
     img_data = requests.get(link.thumbnail_url).content
     temp = tempfile.NamedTemporaryFile()
@@ -34,7 +35,7 @@ def getcover(link):
 
 
 def mediatype(link):
-    """media type selection and downloading media"""
+    "media type selection and downloading media"
     print("1: Video file with audio")
     print("2: Audio only")
 
