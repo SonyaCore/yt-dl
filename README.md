@@ -17,3 +17,8 @@ pip install -r requirements.txt
 # run ytbot
 ytbot.py 'https://youtu.be/EngW7tLk6R8'
 ```
+### Todo List
+
+- [ ] Error Handeling
+- [x] Link Validation
+- [ ] better MediaType Selection
