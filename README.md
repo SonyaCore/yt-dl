@@ -21,6 +21,7 @@ ytbot.py 'https://youtu.be/EngW7tLk6R8' #youtube-url --video #mediatype
 ```
 --video -v download URL with video
 --audio -a download URL with only audio
+--dir   -d set destination for saving file
 ```
 ### Todo List
 
