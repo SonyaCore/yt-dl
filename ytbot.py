@@ -1,4 +1,5 @@
 #!/bin/env python3
+Ver=0.2
 
 from pytube import YouTube
 from pytube.cli import on_progress
@@ -13,7 +14,7 @@ from utils.InterruptHandler import signal
 signal.signal(signal.SIGINT, sigint_handler)
 
 # parsing argvs and add link argv
-parser = ArgumentParser()
+parser = ArgumentParser(description=f"youtube url downloader {Ver}")
 parser.add_argument('link')
 parser.add_argument('--video','-v',action='store_true',help='download URL with video')
 parser.add_argument('--audio','-a',action='store_true',help='download URL with only audio')
