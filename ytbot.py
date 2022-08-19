@@ -21,7 +21,7 @@ parser.add_argument('--audio','-a',action='store_true',help='download URL with o
 parser.add_argument('--dir','-d',action='store',type=str,help='set destination')
 
 optionalparser = parser.add_argument_group( 'optional options' )
-optionalparser.add_argument('--description','-desc',action='store_true',help='download URL with only audio')
+optionalparser.add_argument('--description','-desc',action='store_true',help='show url description')
 
 
 argv_parsed = parser.parse_args()

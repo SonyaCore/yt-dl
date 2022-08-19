@@ -19,7 +19,7 @@ class Download():
         # Title of The Video
         print(link.title)
 
-        # Thumbnail Image and Description
+        # Thumbnail Image
         print(link.thumbnail_url)
 
         self.video_resolutions = []
