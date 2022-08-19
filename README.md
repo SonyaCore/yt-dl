@@ -15,10 +15,16 @@ pip install -r requirements.txt
 ```
 ```
 # run ytbot
-ytbot.py 'https://youtu.be/EngW7tLk6R8'
+ytbot.py 'https://youtu.be/EngW7tLk6R8' #youtube-url --video #mediatype
+```
+## Options:
+```
+--video -v download URL with video
+--audio -a download URL with only audio
 ```
 ### Todo List
 
 - [ ] Error Handeling
 - [x] Link Validation
-- [ ] better MediaType Selection
+- [x] better MediaType Selection
+- [ ] Simpler Stream Selection
