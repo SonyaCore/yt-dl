@@ -1,6 +1,5 @@
 #!/bin/env python3
 
-import argparse
 from pytube import YouTube
 from pytube.cli import on_progress
 from argparse import ArgumentParser
