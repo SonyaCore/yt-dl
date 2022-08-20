@@ -37,8 +37,20 @@ if not link_is_valid:
 try:
     dl = Download(destination)
     link = YouTube(str(video_link), on_progress_callback=on_progress)
-
     dl.sort_resolutions(link)
+
+    if argv_parsed.description:
+        print(Download.show_description(link))
+
+    if argv_parsed.video:
+        dl.video(link)
+    elif argv_parsed.audio:
+        Download.getcover(link)
+        dl.audio(link)
+    else:
+        print('set mediatype --video for video --audio for only audio')
+        exit()
+
 except exceptions.RegexMatchError:
     print('Enter valid video link')
     exit(1)
@@ -51,17 +63,5 @@ except exceptions.LiveStreamError:
 except exceptions.VideoUnavailable:
     print('Base video unavailable error.')
     exit(1)
-
-if argv_parsed.description:
-    print(Download.show_description(link))
-
-if argv_parsed.video:
-    dl.video(link)
-elif argv_parsed.audio:
-    Download.getcover(link)
-    dl.audio(link)
-else:
-    print('set mediatype --video for video --audio for only audio')
-    exit()
 
 print(f'{link.title} Downloaded.')
