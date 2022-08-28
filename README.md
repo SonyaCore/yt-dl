@@ -1,5 +1,7 @@
 # yt-dl
-youtube video/audio downloader
+youtube video/audio downloader is a program to download youtube urls with specific resolution or format
+
+yt-dl uses pytube library to provide all of the functionality
 
 
 > only youtube links are supported
