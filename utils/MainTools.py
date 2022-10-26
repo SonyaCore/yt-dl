@@ -16,16 +16,20 @@ class Download():
     def sort_resolutions(self,link):
         "sort stream order"
 
+        # Progressive mode to filter videos with audio.
+        video = link.streams.filter(progressive=True)
+
         # Title of The Video
         print(link.title)
 
         # Thumbnail Image
         print(link.thumbnail_url)
 
+
         self.video_resolutions = []
         self.videos = []
 
-        for stream in link.streams.order_by('resolution'):
+        for stream in video:
             self.video_resolutions.append(stream)
             self.videos.append(stream)
 
