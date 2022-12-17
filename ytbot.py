@@ -2,6 +2,7 @@
 Ver=0.2
 
 from pytube import YouTube
+from pytube import Playlist
 from pytube import exceptions
 from pytube.cli import on_progress
 from argparse import ArgumentParser
@@ -17,6 +18,7 @@ signal.signal(signal.SIGINT, sigint_handler)
 # parsing argvs and add link argv
 parser = ArgumentParser(description=f"youtube url downloader {Ver}")
 parser.add_argument('link')
+parser.add_argument('--playlist','-p',action='store_true',help='download playlist')
 parser.add_argument('--video','-v',action='store_true',help='download URL with video')
 parser.add_argument('--audio','-a',action='store_true',help='download URL with only audio')
 parser.add_argument('--dir','-d',action='store',type=str,help='set destination')
@@ -35,6 +37,12 @@ if not link_is_valid:
     quit()
 
 try:
+    if argv_parsed.playlist:
+        p = Playlist(video_link)
+        print(f'Number of videos in playlist: {len(p.video_urls)}')
+        Download.playlist(destination,p)
+        exit(1)
+
     dl = Download(destination)
     link = YouTube(str(video_link), on_progress_callback=on_progress)
     dl.sort_resolutions(link)

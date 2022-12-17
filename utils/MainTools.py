@@ -56,6 +56,13 @@ class Download():
                 break
             else:
                 print("Invalid choice!!\n\n")
+    
+    def playlist(self,link):
+        # for url in link.video_urls:
+        #      print(url)
+        for video in link.videos:
+            print(video.title)
+            video.streams.first().download()
                 
     def audio(self,link):
             video = link.streams.filter(only_audio=True).first()
