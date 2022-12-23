@@ -62,9 +62,14 @@ class Download():
         #      print(url)
         for video in link.videos:
             print(video.title)
-            video.streams.first().download()
-                
-    def audio(self,link):
+            video.streamsvideo.streams.\
+            filter(type='video', progressive=True, file_extension='mp4').\
+            order_by('resolution').\
+            desc().\
+            first().\
+            download()
+
+    def audio(self,link):  
             video = link.streams.filter(only_audio=True).first()
             out = video.download(output_path=self.destination)
             try:
